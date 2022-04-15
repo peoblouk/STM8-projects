@@ -1,11 +1,11 @@
 #include "stm8s.h"
 #include "__assert__.h"
 
-#define read1 GPIO_ReadInputPin(GPIOE, GPIO_PIN_4) // read button
+#define read1 GPIO_ReadInputPin(GPIOE, PIN_4) // read button
 
 //                   0    1    2    3    4    5    6    7    8    9    a    b    c    d
 char numbers[14] = {192, 249, 164, 176, 153, 146, 130, 248, 128, 144, 163, 131, 167, 161}; // numbers
-char pin[4] = {GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7};                            // digit
+char pin[4] = {PIN_4, PIN_5, PIN_6, PIN_7};                                                // digit
 uint8_t x = 0;
 
 INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
@@ -38,10 +38,10 @@ void main(void)
 {
     GPIO_DeInit;
     EXTI_DeInit;
-    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);             // FREQ MCU 16MHz
-    GPIO_Init(GPIOB, GPIO_PIN_ALL, GPIO_MODE_OUT_PP_LOW_SLOW); // inicialization
-    GPIO_Init(GPIOE, GPIO_PIN_4, GPIO_MODE_IN_FL_NO_IT);       // IT x NO_IT // button PE4
-    GPIO_Init(GPIOD, GPIO_PIN_4, GPIO_MODE_IN_FL_IT);          // PD4
+    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);        // FREQ MCU 16MHz
+    GPIO_Init(GPIOB, PIN_ALL, GPIO_MODE_OUT_PP_LOW_SLOW); // inicialization
+    GPIO_Init(GPIOE, PIN_4, GPIO_MODE_IN_FL_NO_IT);       // IT x NO_IT // button PE4
+    GPIO_Init(GPIOD, PIN_4, GPIO_MODE_IN_FL_IT);          // PD4
 
     // INTERRUPT
     EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_FALL_ONLY);
@@ -54,7 +54,7 @@ void main(void)
     while (1)
     {
         // digit(TRUE, 1);
-        GPIO_WriteHigh(GPIOG, GPIO_PIN_5); // on digit
+        GPIO_WriteHigh(GPIOG, PIN_5); // on digit
         GPIO_Write(GPIOB, numbers[x]);
 
         if (read1 == RESET)

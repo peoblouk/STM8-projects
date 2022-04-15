@@ -10,8 +10,8 @@ uint8_t minuly_stav = 1;   // zde si budeme ukládat minulý stav tlačítka (1=
 uint8_t aktualni_stav = 1; // zde si budeme ukládat aktuální stav tlačítka (1=tlačítko stisknuté, 0=tlačítko uvolněné)
 
 // makro LED
-#define LED_ON GPIO_WriteHigh(GPIOB, GPIO_PIN_1)
-#define LED_OFF GPIO_WriteLow(GPIOB, GPIO_PIN_1)
+#define LED_ON GPIO_WriteHigh(GPIOB, PIN_1)
+#define LED_OFF GPIO_WriteLow(GPIOB, PIN_1)
 
 void delay(uint32_t time)
 {
@@ -27,11 +27,11 @@ void main(void)
     CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1); // FREQ MCU 16MHz
 
     // Inicializace LED
-    GPIO_Init(GPIOB, GPIO_PIN_1, GPIO_MODE_OUT_PP_HIGH_FAST); // PB1
+    GPIO_Init(GPIOB, PIN_1, GPIO_MODE_OUT_PP_HIGH_FAST); // PB1
 
     // Inicializace tlačítek
-    GPIO_Init(GPIOE, GPIO_PIN_4, GPIO_MODE_IN_PU_NO_IT); // PE4
-    GPIO_Init(GPIOG, GPIO_PIN_5, GPIO_MODE_IN_FL_NO_IT); // PG5
+    GPIO_Init(GPIOE, PIN_4, GPIO_MODE_IN_PU_NO_IT); // PE4
+    GPIO_Init(GPIOG, PIN_5, GPIO_MODE_IN_FL_NO_IT); // PG5
 
     while (1)
     {

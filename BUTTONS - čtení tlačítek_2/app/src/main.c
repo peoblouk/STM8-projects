@@ -2,12 +2,12 @@
 #include "__assert__.h"
 
 // piny led
-#define led GPIOB, GPIO_PIN_4
-char b = GPIO_PIN_2;
+#define led GPIOB, PIN_4
+char b = PIN_2;
 
 // piny tlačitko
-char c = GPIO_PIN_4;
-char d = GPIO_PIN_5;
+char c = PIN_4;
+char d = PIN_5;
 // proměnné
 uint8_t aktualnistav1 = 0;
 uint8_t minulystav1 = 0;
@@ -41,11 +41,11 @@ void main(void)
         // zaregistrována změna tlačitko 1
         if ((aktualnistav1 = 1) && (minulystav1 = 0))
         {
-            GPIO_WriteHigh(GPIOB, GPIO_PIN_2);
+            GPIO_WriteHigh(GPIOB, PIN_2);
         }
         if ((aktualnistav1 = 0) && (minulystav1 = 1))
         {
-            GPIO_WriteLow(GPIOB, GPIO_PIN_2);
+            GPIO_WriteLow(GPIOB, PIN_2);
         }
         minulystav1 = aktualnistav1;
 
@@ -61,11 +61,11 @@ void main(void)
         // zaregistrována změna tlačitko 2
         if ((aktualnistav2 = 1) && (minulystav2 = 0))
         {
-            GPIO_WriteHigh(GPIOB, GPIO_PIN_1);
+            GPIO_WriteHigh(GPIOB, PIN_1);
         }
         if ((aktualnistav2 = 0) && (minulystav2 = 1))
         {
-            GPIO_WriteLow(GPIOB, GPIO_PIN_1);
+            GPIO_WriteLow(GPIOB, PIN_1);
         }
         minulystav2 = aktualnistav2;
     }

@@ -10,7 +10,7 @@
 #include "__assert__.h"
 // #include "7_segment.h"
 
-// #define read1 GPIO_ReadInputPin(GPIOE, GPIO_PIN_4) // read button on PE4
+// #define read1 GPIO_ReadInputPin(GPIOE, PIN_4) // read button on PE4
 
 // variables for read button
 uint8_t aktualni_stav = 0;
@@ -18,7 +18,7 @@ uint8_t minuly_stav = 0;
 
 //                   0    1    2    3    4    5    6    7    8    9    -
 char numbers[11] = {192, 249, 164, 176, 153, 146, 130, 248, 128, 144, 255}; // numbers
-char pin[4] = {GPIO_PIN_7, GPIO_PIN_6, GPIO_PIN_5, GPIO_PIN_4};             // array of digits
+char pin[4] = {PIN_7, PIN_6, PIN_5, PIN_4};                                 // array of digits
 uint8_t dgt = 0;
 
 // letters
@@ -94,7 +94,7 @@ char keyboard_2[4][4] = {
 
 // inicialization of segment
 char port_select[] = {GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOI};
-char pin_select[4] = {GPIO_PIN_7, GPIO_PIN_6, GPIO_PIN_5, GPIO_PIN_4};
+char pin_select[4] = {PIN_7, PIN_6, PIN_5, PIN_4};
 uint8_t port_sel = 0;
 
 void segment_init(char port_select[port_sel], uint8_t pin_select[])
@@ -118,14 +118,14 @@ void main(void)
     GPIO_DeInit;                                   // deinicializace
     CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1); // FREQ MCU 16MHz
 
-    GPIO_Init(GPIOB, GPIO_PIN_ALL, GPIO_MODE_OUT_PP_LOW_FAST); // PB port for A-G
-    GPIO_Init(GPIOE, GPIO_PIN_4, GPIO_MODE_IN_FL_NO_IT);       // PE4
+    GPIO_Init(GPIOB, PIN_ALL, GPIO_MODE_OUT_PP_LOW_FAST); // PB port for A-G
+    GPIO_Init(GPIOE, PIN_4, GPIO_MODE_IN_FL_NO_IT);       // PE4
 
     // Inicialization for pin for each digit
-    GPIO_Init(GPIOG, GPIO_PIN_4, GPIO_MODE_OUT_PP_LOW_FAST); // PG4 (D1) digit 1
-    GPIO_Init(GPIOG, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_FAST); // PG5 (D2) digit 2
-    GPIO_Init(GPIOG, GPIO_PIN_6, GPIO_MODE_OUT_PP_LOW_FAST); // PG6 (D3) digit 3
-    GPIO_Init(GPIOG, GPIO_PIN_7, GPIO_MODE_OUT_PP_LOW_FAST); // PG7 (D4) digit 4
+    GPIO_Init(GPIOG, PIN_4, GPIO_MODE_OUT_PP_LOW_FAST); // PG4 (D1) digit 1
+    GPIO_Init(GPIOG, PIN_5, GPIO_MODE_OUT_PP_LOW_FAST); // PG5 (D2) digit 2
+    GPIO_Init(GPIOG, PIN_6, GPIO_MODE_OUT_PP_LOW_FAST); // PG6 (D3) digit 3
+    GPIO_Init(GPIOG, PIN_7, GPIO_MODE_OUT_PP_LOW_FAST); // PG7 (D4) digit 4
 
     uint8_t numero = 0b11111110;
 

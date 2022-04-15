@@ -78,10 +78,10 @@ Důležité informace k STM8
 
 - druhý argument:
 
-  - `GPIO_PIN_0 až GPIO_PIN_7` (je třeba znát které piny použít)
+  - `PIN_0 až PIN_7` (je třeba znát které piny použít)
   - `GPIO_PIN_LNIB` - Low nibble pins selected
   - `GPIO_PIN_HNIB` - High nibble pins selected
-  - `GPIO_PIN_ALL` - All pins selected
+  - `PIN_ALL` - All pins selected
 
 - třetí argument:
 
@@ -103,13 +103,13 @@ Důležité informace k STM8
   - `GPIO_MODE_IN_FL_IT`- Input floating, external interrupt
   - `GPIO_MODE_IN_PU_IT` - Input pull-up, external interrupt
 
-- příklad inizializace LED: `GPIO_Init(GPIOB, GPIO_PIN_0, GPIO_MODE_OUT_PP_HIGH_SLOW);`
+- příklad inizializace LED: `GPIO_Init(GPIOB, PIN_0, GPIO_MODE_OUT_PP_HIGH_SLOW);`
 
 ### LED
 
 - mastavování logické úrovně `"High"` a `"Low"` provádíme funkcemi `GPIO_WriteHigh` a `GPIO_WriteLow`
 
-- `GPIO_WriteHigh` - nastaví na zvoleném pinu (nebo skupině pinů) úroveň High (log.1). Prvním argumentem je port (GPIOA až GPIOI), druhým argumentem je pin (nebo jejich skupina). Piny se zapisují v podobě GPIO_PIN_0 až GPIO_PIN_7 (což jsou předem připravená makra v knihovnách). Chceme-li nastavit více pinů zároveň (na stejném portu) zapisujeme je za sebe oddělené znakem ' | ' (logický OR). Například takto GPIO_PIN_1 | GPIO_PIN_2
+- `GPIO_WriteHigh` - nastaví na zvoleném pinu (nebo skupině pinů) úroveň High (log.1). Prvním argumentem je port (GPIOA až GPIOI), druhým argumentem je pin (nebo jejich skupina). Piny se zapisují v podobě PIN_0 až PIN_7 (což jsou předem připravená makra v knihovnách). Chceme-li nastavit více pinů zároveň (na stejném portu) zapisujeme je za sebe oddělené znakem ' | ' (logický OR). Například takto PIN_1 | PIN_2
 - `GPIO_WriteLow` - nastaví na zvoleném pinu (nebo skupině pinů) úroveň Low (log.0). Stejně jako u předchozí funkce je prvním argumentem port (GPIOA až GPIOI) a druhým argumentem je pin (nebo skupina pinů)
 
 - `GPIO_Write` - pošle data na port (různé formáty: 0b00000000 - 0b11111111, 0D - 128D, 0H - FH, atd.)
@@ -135,7 +135,7 @@ Důležité informace k STM8
   - výstup typu `Open-Drain` se v úrovni High chová jako "Vysoká impedance" - tedy jako vstup.
   - výstupy typu `Open-Drain` se smí spojovat dohromady a potřebují vnější pullup rezistor
 
-- příklad inizializace tlačítka: `GPIO_Init(GPIOE, GPIO_PIN_4, GPIO_MODE_IN_FL_NO_IT);`
+- příklad inizializace tlačítka: `GPIO_Init(GPIOE, PIN_4, GPIO_MODE_IN_FL_NO_IT);`
 
 ### PWM modulace
 
@@ -202,7 +202,7 @@ void main(void)
 {
     // předdělička fHSI
     CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);
-    GPIO_Init(GPIOC, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_SLOW); // PC5
+    GPIO_Init(GPIOC, PIN_5, GPIO_MODE_OUT_PP_LOW_SLOW); // PC5
     TIM4_TimeBaseInit(TIM4_PRESCALER_128, 249); // předdělička 128, strop 249
     TIM4_Cmd(ENABLE); //start čítače
 
@@ -211,7 +211,7 @@ void main(void)
         while (TIM4_GetFlagStatus(TIM4_FLAG_UPDATE) != SET)
             ;
         TIM4_ClearFlag(TIM4_FLAG_UPDATE);
-        GPIO_WriteReverse(GPIOC, GPIO_PIN_5);
+        GPIO_WriteReverse(GPIOC, PIN_5);
     }
 }
 ```

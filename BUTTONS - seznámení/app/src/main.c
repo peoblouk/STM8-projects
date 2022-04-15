@@ -8,13 +8,13 @@ uint8_t aktualni_stav = 1; // zde si budeme ukládat aktuální stav tlačítka 
 
 void main(void)
 {
-    GPIO_Init(GPIOB, GPIO_PIN_ALL, GPIO_MODE_OUT_PP_LOW_SLOW); // nastavíme port PB jako výstup typu push-pull (LEDka)
-    GPIO_Init(GPIOE, GPIO_PIN_4, GPIO_MODE_IN_FL_NO_IT);       // nastavíme PE4 jako vstup (tlačítko)
+    GPIO_Init(GPIOB, PIN_ALL, GPIO_MODE_OUT_PP_LOW_SLOW); // nastavíme port PB jako výstup typu push-pull (LEDka)
+    GPIO_Init(GPIOE, PIN_4, GPIO_MODE_IN_FL_NO_IT);       // nastavíme PE4 jako vstup (tlačítko)
 
     while (1)
     { // stále dokola
         // načteme aktuální stav tlačítka
-        if (GPIO_ReadInputPin(GPIOE, GPIO_PIN_4) == RESET)
+        if (GPIO_ReadInputPin(GPIOE, PIN_4) == RESET)
         {                      // zjisti jestli je tlačítko stisknuté
             aktualni_stav = 1; // pokud ano ulož že je stisknuté
         }
@@ -49,14 +49,14 @@ uint8_t stav_ledky = 0;    // tady si pamatujeme jestli LEDka svítí nebo je zh
 
 void main(void)
 {
-    GPIO_Init(GPIOB, GPIO_PIN_ALL, GPIO_MODE_OUT_PP_LOW_SLOW); // nastavíme PC5 jako výstup typu push-pull (LEDka)
-    GPIO_Init(GPIOE, GPIO_PIN_4, GPIO_MODE_IN_FL_NO_IT);       // nastavíme PE4 jako vstup (tlačítko)
-    GPIO_Init(GPIOG, GPIO_PIN_4, GPIO_MODE_IN_FL_NO_
+    GPIO_Init(GPIOB, PIN_ALL, GPIO_MODE_OUT_PP_LOW_SLOW); // nastavíme PC5 jako výstup typu push-pull (LEDka)
+    GPIO_Init(GPIOE, PIN_4, GPIO_MODE_IN_FL_NO_IT);       // nastavíme PE4 jako vstup (tlačítko)
+    GPIO_Init(GPIOG, PIN_4, GPIO_MODE_IN_FL_NO_
 
     while (1)
     { // stále dokola
         // načteme aktuální stav tlačítka
-        if (GPIO_ReadInputPin(GPIOE, GPIO_PIN_4) == RESET)
+        if (GPIO_ReadInputPin(GPIOE, PIN_4) == RESET)
         {                      // zjisti jestli je tlačítko stisknuté
             aktualni_stav = 1; // pokud ano ulož že je stisknuté
         }

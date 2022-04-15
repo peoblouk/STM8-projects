@@ -8,19 +8,19 @@ void main(void)
 {
     GPIO_DeInit;
     CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1); // FREQ MCU 16MHz
-    GPIO_Init(GPIOC, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_SLOW);
+    GPIO_Init(GPIOC, PIN_5, GPIO_MODE_OUT_PP_LOW_SLOW);
 
     // 8 LED inicializace
-    GPIO_Init(GPIOB, GPIO_PIN_ALL, GPIO_MODE_OUT_PP_HIGH_SLOW);
+    GPIO_Init(GPIOB, PIN_ALL, GPIO_MODE_OUT_PP_HIGH_SLOW);
 
     while (1)
     {
-        /*GPIO_WriteReverse(GPIOC, GPIO_PIN_5);
+        /*GPIO_WriteReverse(GPIOC, PIN_5);
         for (uint16_t i = 0; i < 10000; i++)
-        GPIO_WriteHigh(GPIOB, GPIO_PIN_ALL);
+        GPIO_WriteHigh(GPIOB, PIN_ALL);
         for (uint32_t i = 0; i < 500000; i++)
             ;
-        GPIO_WriteLow(GPIOB, GPIO_PIN_ALL);
+        GPIO_WriteLow(GPIOB, PIN_ALL);
         for (uint32_t i = 0; i < 500000; i++)
             ;*/
         // 8 LED bliká od začatku po konec
