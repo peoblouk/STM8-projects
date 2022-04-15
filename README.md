@@ -22,6 +22,7 @@ Důležité informace k STM8
 
 - <a href="https://www.st.com/resource/en/datasheet/stm8s208rb.pdf" alt="datasheet"><b>Datasheet</b></a>
 - <a href="https://github.com/peoblouk/STM8.git" alt="git clone"><b>Git clone</b></a>
+- <a href="https://gitlab.com/wykys/stm8-xikon/-/tree/main" alt="STM8 lexikon"><b>STM8 Lexikon</b></a>
 
 ## Informace
 
