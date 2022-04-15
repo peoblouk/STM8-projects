@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <h1 align="center">
 Důležité informace k STM8
 <img alt="vývojová deska" src="img/thumbnail.jpg" align = "center">
@@ -13,6 +15,8 @@ Důležité informace k STM8
   - [LED](#led)
   - [Tlačítko](#tla%C4%8D%C3%ADtko)
   - [Multitasking](#multitasking) -[Knihovny](#knihovny)
+- [TIM - timer](#tim4)
+  - [typy čítání](#typy-čítání)
 
 ## Důležité URL
 
@@ -170,6 +174,46 @@ Důležité informace k STM8
   - init_milis(), ta spustí časovač TIM4 kerý každou milisekundu volá přerušení a inkrementuje počítadlo času (16bit proměnnou nesoucí informaci o počtu milisekund)
   - funkce milis() vám pak vrátí vždy aktuální hodnotu tohoto "počítadla"
   - jak brzy uvidíte, bude to velmi užitečný pomocník
+
+## Čítače
+
+<p align="center">
+<img alt="clock tree" src="img/TIM4.jpg">
+<img alt="clock tree" src="img/tim4.png">
+</p>
+
+### Typy čítání
+
+  <p align="center">
+  <img alt="clock tree" src="img/counter-settings.png">
+  </p>
+
+### TIM4
+
+- TIM4 hlavní funkce
+- 8b čítač nahoru s nastavitelným stropem (auro reload registrem ARR)
+- programovatelná 3b předdělička hodinové frekvence, která může dělit: 1, 2, 4, 8, 16, 32, 64, 128
+
+```c
+#include "stm8s.h"
+
+void main(void)
+{
+    // předdělička fHSI
+    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);
+    GPIO_Init(GPIOC, GPIO_PIN_5, GPIO_MODE_OUT_PP_LOW_SLOW); // PC5
+    TIM4_TimeBaseInit(TIM4_PRESCALER_128, 249); // předdělička 128, strop 249
+    TIM4_Cmd(ENABLE); //start čítače
+
+    while(1)
+    {
+        while (TIM4_GetFlagStatus(TIM4_FLAG_UPDATE) != SET)
+            ;
+        TIM4_ClearFlag(TIM4_FLAG_UPDATE);
+        GPIO_WriteReverse(GPIOC, GPIO_PIN_5);
+    }
+}
+```
 
 ### Knihovny
 
